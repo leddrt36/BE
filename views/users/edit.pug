@@ -1,0 +1,32 @@
+extends ../layout.pug
+
+block content
+  div.new
+    form.edit_user_form(action= `/users/${user._id}?_method=put`, method= "post")
+      p 현재 비밀번호 
+      span#error_msg #{PWError}
+        input(type="password", name="PW")        
+        - PWError.forEach(function(error){
+            li= `${error}`
+        - })
+      p New Password
+        input(type="password", name="newPW")
+
+      p Password Confirm
+        input(type="password", name="confirmPW")
+
+      p 이름
+        input(type="text", name="name", value=`${user.name}`)
+
+      p 휴대폰 번호
+        input(type="text", name="phone", value=`${user.phone}`)
+
+      p 이메일 주소
+        input(type="text", name="email", value=`${user.email}`)
+
+      p 사는 곳(~동까지만)
+        input(type="text", name="live", value=`${user.live}`)
+
+      p
+        input(type="submit")
+        
