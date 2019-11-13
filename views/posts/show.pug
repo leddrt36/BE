@@ -1,0 +1,42 @@
+extends ../layout.pug
+
+block content
+  div#title= `제목 : ${post.title}`
+  div#body= `내용 : ${post.body}`
+  div#writer= `작성자 : ${post.writer}`
+  br
+  div#petName= `반려견 이름 : ${post.petName}`
+  div#petSex= `반려견 성별 : ${post.petSex}`
+  div#petType= `견종 : ${post.petType}`
+  div#lostPlace= `잃어버린 장소 : ${post.lostPlace}`
+  div#lostDate= `잃어버린 날짜 : ${post.lostDate.toLocaleDateString()}`
+  div#money= `사례금 : ${post.money}만원`
+  div#created= `글 작성 시간 : ${post.created.toLocaleDateString()}`
+  br
+  br
+  - post.comments.forEach(function(comment){
+      div.comment
+        li= `${comment.writer}`
+        span 작성날짜: #{comment.created.toLocaleDateString()}
+        br
+        span 댓글 내용 : #{comment.body}
+        form(action=`/posts/${post._id}/comments/${comment._id}?_method=delete`, method="post")
+          input(type="submit", value="삭제")
+        br
+  -})
+  
+  br
+  form(action=`/posts/${post._id}/comments`, method="post")
+    textarea(type="text", name="body")
+    input(type="submit", value="comment")
+        
+  br
+  form#del_btn(action=`/posts/${post._id}?_method=delete`, method="post")
+    input(type="submit" value="게시글 삭제")
+  
+  form#edit_btn(action=`/posts/${post._id}/edit`, method="get")
+    input(type="submit" value="게시글 수정")
+  br
+  form#list_btn(action="/posts", method="get")
+    input(type="submit" value="list")
+  

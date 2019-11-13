@@ -1,0 +1,60 @@
+extends ../layout.pug
+
+block content
+  div.new
+    form.create_user_form(action= "/users", method= "post")
+      if formData
+        - var ID= `${formData.ID}`
+        - var PW= `${formData.PW}`
+        - var name= `${formData.name}`
+        - var phone= `${formData.phone}`
+        - var email= `${formData.email}`
+        - var live= `${formData.live}`
+
+      p ID
+        if ID != "undefined"
+          input(type='text', name='ID', value=ID)
+        else
+          input(type='text', name='ID')
+
+        - IDError.forEach(function(error){
+            li= `${error}`
+        - })
+
+      p Password
+        if PW != "undefined"
+          input(type='password', name='PW', value=PW)
+        else
+          input(type='password', name='PW')
+
+      p 이름
+        if name != "undefined"
+          input(type='text', name='name', value=name)
+        else
+          input(type='text', name='name')
+
+      p 휴대폰 번호
+        if phone != "undefined"
+          input(type='text', name='phone', value=phone)
+        else
+          input(type="text", name="phone", placeholder="010-xxxx-xxxx")
+
+        - phoneError.forEach(function(error){
+            li= `${error}`
+        - })
+
+      p 이메일 주소
+        if email != "undefined"
+          input(type='text', name='email', value=email)
+        else
+          input(type="text", name="email", placeholder="example@example.com")
+
+      p 사는 곳(~동까지만)
+        if live != "undefined"
+          input(type='text', name='live', value=live)
+        else
+          input(type="text", name="live", placeholder="경기도 수원시 영통구 원천동")
+
+      p
+        input(type="submit")
+        

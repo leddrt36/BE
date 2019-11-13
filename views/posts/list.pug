@@ -1,0 +1,34 @@
+extends ../layout.pug
+
+block content
+  form#new_btn(action="/posts/new", method="get")
+    input(type="submit" value="New")
+
+  - posts.forEach(function(post){
+      li 
+        a(href= `/posts/${post._id}`)= `${post.title}  `
+        br
+        span 작성자: #{post.writer}&nbsp;&nbsp;
+        span 작성날짜: #{post.created.toLocaleDateString()}
+  - })
+
+  ul.pagination
+    - for(var i=1;i<=maxPage;i++){
+      - if(i != page){
+        a(href="/posts?page="+i)= i
+        | &nbsp;&nbsp;
+      - }
+      - else{
+        #{i}
+        | &nbsp;&nbsp;
+      -}
+    - }
+  
+  form#titleSearch(action="/posts", method="get")
+    input(type="text", name="searchText", value=`${search.searchText}`)
+    input(type="submit", value="search")
+
+  br
+  form#home_btn(action="/", method="get")
+    input(type="submit" value="home")
+  

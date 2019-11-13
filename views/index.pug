@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+  if user
+    a(href="/login/logout") 로그아웃
+  else
+    a(href="/login") 로그인
+  br
+  a(href="/posts") 게시판
+  br
+  a(href="/users/"+user._id) 유저정보

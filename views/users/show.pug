@@ -1,0 +1,11 @@
+extends ../layout.pug
+
+block content
+  div#ID= `ID : ${user.ID}`
+  div#name= `이름 : ${user.name}`
+  div#phone= `휴대폰 번호 : ${user.phone}`
+  div#email= `e-mail 주소 : ${user.email}`
+  div#live= `사는 곳 : ${user.live}`
+
+  br
+  a(href="/users/"+user._id+"/edit") 유저정보수정

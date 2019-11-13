@@ -1,0 +1,23 @@
+extends ../layout.pug
+
+block content
+  div.new
+    form.posts_form(action= `/posts/${post._id}?_method=put`, method= "post")
+      p 반려견 이름
+        input(type="text", name="petName", value=`${post.petName}`)
+      p 반려견 성별
+        input(type="text", name="petSex", value=`${post.petSex}`)
+      p 견종
+        input(type="text", name="petType", value=`${post.petType}`)
+      p 잃어버린 장소
+        input(type="text", name="lostPlace", value=`${post.lostPlace}`)
+      p 잃어버린 날짜
+        input(type="text", name="lostDate", value=`${post.lostDate}`)
+      p 사례금
+        input(type="text", name="money", value=`${post.money}`)
+      p 본문
+        textarea(name="body", cols="40", rows="10") #{post.body}
+
+      p
+        input(type="submit")
+        
